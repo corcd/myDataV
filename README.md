@@ -1,6 +1,6 @@
 # mydatav
 
-> A Vue.js project
+> A Vue2.x Data Visualization project
 
 ## Build Setup
 

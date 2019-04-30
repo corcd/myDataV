@@ -1,0 +1,22 @@
+.userinfo {
+  margin: auto 0;
+  text-align: center;
+
+  img {
+    height: 90px;
+    width: 90px;
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .username {
+    color: #FFFFFF;
+    font-size: 22px;
+  }
+
+  .location {
+    color: #FFFFFF;
+    font-size: 12px;
+  }
+}

@@ -1,14 +1,38 @@
-.app-page {
-    width: 100%;
+.data-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #FFFFFF !important;
+  position: flex;
+  align-items: center;
+
+  .el-container {
     height: 100%;
-    overflow: hidden;
-  
-    footer {
+    width: 100%;
+    background-color: #0C1C30;
+    position: flex;
+    flex-direction: column;
+
+    .data-header {
       width: 100%;
-      position: fixed;
-      bottom: 0;
-      text-align: center;
-      padding-bottom: 20px;
+      height: 160px;
+      margin-top: 20px;
+    }
+
+    .data-main {
+      width: 100%;
+      height: 100px;
+    }
+
+    .data-details {
+      width: 100%;
+      height: 100px;
     }
   }
-  
+
+  copyfooter {
+    font-size: 12px;
+    color: #FFFFFF !important;
+    z-index: 10;
+  }
+}

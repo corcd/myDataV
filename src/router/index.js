@@ -6,7 +6,7 @@ import data from '@/page/data'
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
+  mode: 'history',
   routes: [{
       path: '/',
       name: 'index',
@@ -14,6 +14,11 @@ export default new Router({
     },
     {
       path: '/data',
+      name: 'data/',
+      component: index
+    },
+    {
+      path: '/data/:id',
       name: 'data',
       component: data
     }
