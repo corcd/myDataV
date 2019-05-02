@@ -9,7 +9,7 @@
         <p>从目标用户 ID 获取相关数据信息，并将其数据可视化</p>
         <el-row>
           <el-col :span="20">
-            <el-input v-model="userID" :plain="true" placeholder="请输入用户 ID"></el-input>
+            <el-input v-model="userID" :plain="true" placeholder="请输入用户 ID" clearable></el-input>
           </el-col>
           <el-col :span="4">
             <el-button :span="8" type="primary" @click="getdata(userID)">获取数据</el-button>

@@ -12,12 +12,9 @@ export default {
   name: "card",
   props: {
     title: String,
-    sum: String
+    sum: Number
   },
-  created() {
-    if (!this.title) this.title = "No Item";
-    if (!this.sum) this.sum = "N/A";
-  }
+  created() {}
 };
 </script>
 

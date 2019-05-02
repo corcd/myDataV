@@ -1,57 +1,118 @@
 <template>
   <el-row class="userdetails">
-    <el-col :span="8" class="langdata">
-      <ve-ring :data="chartData1" :settings="chartSettings1"></ve-ring>
+    <el-col :span="8" class="lang">
+      <ve-ring :data="languageData" :settings="chartSettings" :extend="chartExtend" :loading="loading"></ve-ring>
     </el-col>
-    <el-col :span="8" class>
-      <ve-histogram :data="chartData2" :settings="chartSettings2"></ve-histogram>
+    <el-col :span="8" class="repo">
+      <repolist></repolist>
     </el-col>
-    <el-col :span="8" class></el-col>
+    <el-col :span="8" class="auto">
+      <autolist></autolist>
+    </el-col>
   </el-row>
 </template>
 
 <script>
+import langlist from "./langlist";
+import repolist from "./repolist";
+import autolist from "./autolist";
+
 export default {
+  components: {
+    langlist,
+    repolist,
+    autolist
+  },
   name: "userdetails",
   props: {
-    langData: Array,
-    repoData: Array
+    data: Object,
+    rurl: String
   },
   data() {
-    this.chartSettings1 = {
-      roseType: "radius"
+    this.chartSettings = {
+      roseType: "radius",
+      selectedMode: "single",
+      hoverAnimation: false
     };
-    this.chartSettings2 = {
-      metrics: ["访问用户", "下单用户"],
-      dimension: ["日期"]
+    this.chartExtend = {
+      legend: {
+        textStyle: { color: "#FFFFFF" }
+      },
+      grid: {
+        textStyle: { color: "#FFFFFF" }
+      },
+      xAxis: { axisLabel: { color: "#FFFFFF" } },
+      yAxis: { axisLabel: { color: "#FFFFFF" } },
+      series: {
+        label: { show: true, position: "top" },
+        radius: ["0", "40%"],
+        center: ["50%", "50%"]
+      },
+      series(v) {
+        v.forEach(i => {
+          i.barWidth = 10;
+        });
+        return v;
+      }
     };
     return {
-      chartData1: {
-        columns: ["日期", "访问用户"],
-        rows: [
-          { 日期: "1/1", 访问用户: 1393 },
-          { 日期: "1/2", 访问用户: 3530 },
-          { 日期: "1/3", 访问用户: 2923 },
-          { 日期: "1/4", 访问用户: 1723 },
-          { 日期: "1/5", 访问用户: 3792 },
-          { 日期: "1/6", 访问用户: 4593 }
-        ]
+      languageData: {
+        columns: ["lang", "sum"],
+        rows: []
       },
-      chartData2: {
-        columns: ["日期", "访问用户", "下单用户", "下单率"],
-        rows: [
-          { 日期: "1/1", 访问用户: 1393, 下单用户: 1093, 下单率: 0.32 },
-          { 日期: "1/2", 访问用户: 3530, 下单用户: 3230, 下单率: 0.26 },
-          { 日期: "1/3", 访问用户: 2923, 下单用户: 2623, 下单率: 0.76 },
-          { 日期: "1/4", 访问用户: 1723, 下单用户: 1423, 下单率: 0.49 },
-          { 日期: "1/5", 访问用户: 3792, 下单用户: 3492, 下单率: 0.323 },
-          { 日期: "1/6", 访问用户: 4593, 下单用户: 4293, 下单率: 0.78 }
-        ]
-      }
+      loading: true
     };
   },
   created() {},
-  methods: {}
+  mounted() {},
+  methods: {
+    getRepoInfo(url) {
+      let self = this;
+      console.log(url);
+      this.$axios
+        .get(url)
+        .then(response => {
+          let res = JSON.parse(JSON.stringify(response));
+          if (res.status == 200) {
+            if (res.data) {
+              let rowData = [];
+              let languages = {};
+              for (let i = 0; i < res.data.length; i++) {
+                let langData = res.data[i].language;
+                if (langData) {
+                  if (langData in languages) {
+                    languages[langData]++;
+                  } else {
+                    languages[langData] = 1;
+                  }
+                }
+              }
+              let objL = JSON.parse(JSON.stringify(languages));
+              let dataL = [];
+              for (let key in objL) {
+                dataL.push({ lang: key, sum: objL[key] });
+              }
+              this.languageData.rows = dataL;
+              console.log(this.languageData);
+            } else {
+              //无数据
+            }
+          }
+          return;
+        })
+        .catch(err => {
+          console.log(err.message);
+          this.$message.error("拉取仓库数据遇到错误");
+        });
+    }
+  },
+  watch: {
+    rurl(rurl) {
+      if (rurl) {
+        this.getRepoInfo(rurl);
+      }
+    }
+  }
 };
 </script>
 

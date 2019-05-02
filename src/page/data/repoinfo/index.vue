@@ -2,7 +2,7 @@
   <div class="repoinfo">
     <el-row>
       <el-col :span="6">
-        <card title="时长" sum="66"></card>
+        <card title="时长" :sum="data.days"></card>
       </el-col>
       <el-col :span="6">
         <card title="仓库" :sum="data.repos"></card>
@@ -22,6 +22,11 @@ export default {
   name: "repoinfo",
   props: {
     data: Object
+  },
+  data() {
+    return {
+      days: 0
+    };
   },
   created() {},
   methods: {}

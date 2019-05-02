@@ -1,0 +1,24 @@
+.fullscreen {
+  width: 100px;
+  height: 0px;
+  position: flex;
+  
+  button {
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 50%;
+  }
+
+  .red {
+    background-color: red;
+  }
+
+  .yellow {
+    background-color: yellow;
+  }
+
+  .green {
+    background-color: green;
+  }
+}

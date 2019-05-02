@@ -13,7 +13,7 @@
         </transition>
       </div>
       <div class="data-details">
-        <userdetails></userdetails>
+        <userdetails :data="resData" :rurl="repos_url"></userdetails>
       </div>
     </el-container>
     <copyfooter/>
@@ -24,6 +24,7 @@
 import userinfo from "./userinfo";
 import repoinfo from "./repoinfo";
 import userdetails from "./userdetails";
+
 export default {
   components: {
     userinfo,
@@ -33,12 +34,15 @@ export default {
   data() {
     return {
       loadShow: false,
+      resData: {},
       userID: "",
       img: "",
       username: "",
       location: "",
       url: "",
-      numberData: {}
+      numberData: {},
+      resData: {},
+      repos_url: ""
     };
   },
   created() {
@@ -55,19 +59,29 @@ export default {
           let res = JSON.parse(JSON.stringify(response));
           if (res.status == 200) {
             console.log(res);
+            this.resData = res.data;
+            this.repos_url = res.data.repos_url;
             this.img = res.data.avatar_url;
             this.username = res.data.name;
             this.location = res.data.location;
             this.url = res.data.html_url;
 
-            let repos = res.data.public_repos;
-            let followers = res.data.followers;
-            let following = res.data.following;
-            let objNumber  = {
-          	    	repos: repos,
-          	    	followers: followers,
-          	    	following: following
-            }   
+            let begin = res.data.created_at;
+            let end = new Date();
+            if (begin) {
+              let datePart = begin.substring(0, 10);
+              console.log(datePart);
+              let sdate = datePart.split("-");
+              begin = new Date(sdate[0], sdate[1] - 1, sdate[2]);
+            }
+            let days = parseInt((end - begin) / (24 * 60 * 60 * 1000));
+            console.log(days);
+            let objNumber = {
+              days: days,
+              repos: res.data.public_repos,
+              followers: res.data.followers,
+              following: res.data.following
+            };
             this.numberData = objNumber;
             this.loadShow = false;
           }
