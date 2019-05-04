@@ -1,0 +1,30 @@
+.datatools {
+  width: 100px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+
+
+  .btn-fs {
+    .el-switch {
+      width: 80px;
+      margin-right: 10px;
+
+      .el-switch__label {
+        span {
+          font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+          color: #FFFFFF !important;
+        }
+      }
+    }
+  }
+
+  .btn-github {
+    a {
+      position: fixed;
+      right: 0;
+      top: 5px;
+      color: cornsilk;
+    }
+  }
+}

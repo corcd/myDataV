@@ -4,6 +4,9 @@
       <loading v-if="loadShow"></loading>
     </transition>
     <el-container>
+      <div class="toolbar">
+        <datatools></datatools>
+      </div>
       <div class="data-header">
         <userinfo :img="img" :username="username" :location="location" :url="url"></userinfo>
       </div>
@@ -13,7 +16,7 @@
         </transition>
       </div>
       <div class="data-details">
-        <userdetails :data="resData" :rurl="repos_url"></userdetails>
+        <userdetails :eurl="events_url" :rurl="repos_url"></userdetails>
       </div>
     </el-container>
     <copyfooter/>
@@ -42,7 +45,8 @@ export default {
       url: "",
       numberData: {},
       resData: {},
-      repos_url: ""
+      repos_url: "",
+      events_url: ""
     };
   },
   created() {
@@ -61,9 +65,19 @@ export default {
             console.log(res);
             this.resData = res.data;
             this.repos_url = res.data.repos_url;
+            this.events_url =
+              "https://api.github.com/users/" + res.data.login + "/events";
             this.img = res.data.avatar_url;
-            this.username = res.data.name;
-            this.location = res.data.location;
+            if (res.data.name) {
+              this.username = res.data.name;
+            } else {
+              this.username = "(" + res.data.login + ")";
+            }
+            if (res.data.location) {
+              this.location = res.data.location;
+            } else {
+              this.location = "(Unknow)";
+            }
             this.url = res.data.html_url;
 
             let begin = res.data.created_at;

@@ -1,7 +1,11 @@
 .autolist {
-  width: 100%;
+  width: 400px;
+  height: 380px;
 
   .el-table{
     width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 }

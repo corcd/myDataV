@@ -1,9 +1,9 @@
 <template>
   <div class="autolist">
-    <el-table>
-      <el-table-column prop="date" label="日期" width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
+    <el-table :data="tableData" :default-sort = "{prop: 'date', order: 'descending'}" stripe>
+      <el-table-column prop="date" label="时间" width="140" sortable></el-table-column>
+      <el-table-column prop="repo" label="仓库" width="140" sortable></el-table-column>
+      <el-table-column prop="event" label="操作" width="100" sortable></el-table-column>
     </el-table>
   </div>
 </template>
@@ -13,6 +13,11 @@ export default {
   name: "autolist",
   props: {
     url: String
+  },
+  data() {
+    return {
+      tableData: []
+    };
   },
   created() {},
   methods: {
@@ -25,12 +30,21 @@ export default {
           let res = JSON.parse(JSON.stringify(response));
           if (res.status == 200) {
             console.log(res);
+            for (let i = 0; i < res.data.length; i++) {
+              let objE = {
+                date: res.data[i].created_at,
+                repo: res.data[i].repo.name,
+                event: res.data[i].type
+              };
+              this.tableData.push(objE);
+            }
+            console.log(this.tableData);
           }
           return;
         })
         .catch(err => {
           console.log(err.message);
-          this.$message.error("拉取仓库数据遇到错误");
+          this.$message.error("拉取仓库动态遇到错误");
         });
     }
   },

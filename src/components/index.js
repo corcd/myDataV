@@ -1,13 +1,13 @@
 import copyfooter from './copyfooter'
 import loading from './loading'
 import card from './card'
-import fullscreen from './fullscreen'
+import datatools from './datatools'
 
 const components = {
   loading,
   copyfooter,
   card,
-  fullscreen
+  datatools
 }
 
 const install = (Vue, options = {}) => {
