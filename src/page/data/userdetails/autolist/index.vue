@@ -1,6 +1,6 @@
 <template>
   <div class="autolist">
-    <el-table :data="tableData" :default-sort = "{prop: 'date', order: 'descending'}" stripe>
+    <el-table height="380" :data="tableData" :highlight-current-row="false" :default-sort = "{prop: 'date', order: 'descending'}">
       <el-table-column prop="date" label="时间" width="140" sortable></el-table-column>
       <el-table-column prop="repo" label="仓库" width="140" sortable></el-table-column>
       <el-table-column prop="event" label="操作" width="100" sortable></el-table-column>
