@@ -32,6 +32,7 @@ export default {
             Element.ALLOW_KEYBOARD_INPUT
           );
         }
+        this.fsValue = true;
       } else {
         if (document.cancelFullScreen) {
           document.cancelFullScreen();
@@ -40,6 +41,7 @@ export default {
         } else if (document.webkitCancelFullScreen) {
           document.webkitCancelFullScreen();
         }
+        this.fsValue = false;
       }
     }
   }

@@ -46,7 +46,7 @@ export default {
     };
     this.langChartExtend = {
       series: {
-        radius: ["0", "50%"],
+        radius: ["0", "40%"],
         center: ["50%", "50%"],
         label: {
           formatter: "{b} {d}"
@@ -212,29 +212,6 @@ export default {
               for (let i = 0; i < res.data.length; i++) {
                 let reposName = res.data[i].name;
                 let getStars = res.data[i].stargazers_count;
-                // this.$axios
-                //   .get(res.data[i].commits_url)
-                //   .then(response => {
-                //     let commit_res = JSON.parse(JSON.stringify(response));
-                //     if (commit_res.status == 200) {
-                //       if (commit_res) {
-                //         console.log(commit_res.data);
-                //         let objR = {
-                //           repo: reposName,
-                //           stars: getStars,
-                //           commits: 0
-                //         };
-                //         rowData.push(objR);
-                //         this.repoData.rows = rowData;
-                //       }
-                //     }
-                //   })
-                //   .catch(err => {
-                //     console.log(err.message);
-                //     this.$message.error(
-                //       "拉取 " + reposName + " 仓库数据遇到错误"
-                //     );
-                //   });
                 let objR = {
                   repo: reposName,
                   stars: getStars,
