@@ -1,11 +1,15 @@
 # mydatav
 
 <div align='center'>
-![GitHub stars](https://img.shields.io/github/stars/corcd/myDataV.svg?style=social)
+[![GitHub stars](https://img.shields.io/github/stars/corcd/myDataV.svg)](https://github.com/corcd/myDataV/stargazers)
 
-![](https://img.shields.io/badge/axios-0.18.0-orange.svg)
+
 ![](https://img.shields.io/badge/vue-2.5.2-blue.svg)
-![](https://img.shields.io/badge/vue-router-3.0.1-blue.svg)
+![](https://img.shields.io/badge/vue--router-3.0.1-blue.svg)
+![](https://img.shields.io/badge/axios-0.18.0-orange.svg)
+![](https://img.shields.io/badge/ElementUI-2.8.2-brightgreen.svg)
+![](https://img.shields.io/badge/ECharts-4.2.1-brightgreen.svg)
+![](https://img.shields.io/badge/v--charts-1.19.0-brightgreen.svg)
 ![](https://img.shields.io/badge/license-GPL-orange.svg)
 
 </div>
