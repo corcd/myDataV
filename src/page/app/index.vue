@@ -3,6 +3,9 @@
     <transition name="el-fade-in-linear">
       <loading v-if="loadShow"></loading>
     </transition>
+    <div class="toolbar">
+      <datatools :color="'#000000'"></datatools>
+    </div>
     <el-container>
       <el-row class="data-user">
         <h1>Github 数据可视化系统</h1>

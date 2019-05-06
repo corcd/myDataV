@@ -1,8 +1,6 @@
 # mydatav
 
 <div align='center'>
-[![GitHub stars](https://img.shields.io/github/stars/corcd/myDataV.svg)](https://github.com/corcd/myDataV/stargazers)
-
 
 ![](https://img.shields.io/badge/vue-2.5.2-blue.svg)
 ![](https://img.shields.io/badge/vue--router-3.0.1-blue.svg)
@@ -39,7 +37,7 @@ npm test
 ```
 
 ## ToDo
-- [ ] 二级页面返回按钮
+- [*] 一级页面全屏插件 & 二级页面返回按钮
 - [ ] 服务器部署
 - [ ] 整体色彩规划
 - [ ] 数据区边框和区域布局调整

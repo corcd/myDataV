@@ -1,10 +1,13 @@
 <template>
   <div class="datatools">
     <div class="btn-fs">
-      <el-switch v-model="fsValue" active-text="全屏" active-color="#13ce66" @change="FullScreen()"></el-switch>
+      <el-switch v-model="fsValue" active-color="#13ce66" @change="FullScreen()"></el-switch>
+    </div>
+    <div>
+        <p class="btn-tips" :style="fontColor">FullScreen</p>
     </div>
     <div class="btn-github">
-      <a href="https://github.com/corcd/myDataV">View in Github</a>
+      <a :style="fontColor" href="https://github.com/corcd/myDataV">View in Github</a>
     </div>
   </div>
 </template>
@@ -12,9 +15,15 @@
 <script>
 export default {
   name: "datatools",
+  props: {
+    color: String
+  },
   data() {
     return {
-      fsValue: false
+      fsValue: false,
+      fontColor: {
+        color: this.color + " !important"
+      }
     };
   },
   methods: {

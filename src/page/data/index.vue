@@ -5,7 +5,7 @@
     </transition>
     <el-container>
       <div class="toolbar">
-        <datatools></datatools>
+        <datatools :color="'#FFFFFF'"></datatools>
       </div>
       <div class="data-header">
         <userinfo :img="img" :username="username" :location="location" :url="url"></userinfo>
